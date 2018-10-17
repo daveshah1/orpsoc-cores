@@ -9,6 +9,7 @@ src_files =
  rtl/verilog/bufram.v
  rtl/verilog/dpram_altera.v
  rtl/verilog/dpram_generic.v
+ rtl/verilog/dpram_ecp5.v
  rtl/verilog/dual_clock_fifo.v
  rtl/verilog/sdram_ctrl.v
  rtl/verilog/wb_port.v

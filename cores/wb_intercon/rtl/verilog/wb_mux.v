@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////////////
-///                                                               //// 
+///                                                               ////
 /// Wishbone multiplexer, burst-compatible                        ////
 ///                                                               ////
 /// Simple mux with an arbitrary number of slaves.                ////
@@ -55,7 +55,7 @@ module wb_mux
     parameter num_slaves = 2, // Number of slaves
     parameter [num_slaves*aw-1:0] MATCH_ADDR = 0,
     parameter [num_slaves*aw-1:0] MATCH_MASK = 0)
-   
+
    (input                      wb_clk_i,
     input 		       wb_rst_i,
 
@@ -71,11 +71,11 @@ module wb_mux
     output [dw-1:0] 	       wbm_dat_o,
     output 		       wbm_ack_o,
     output 		       wbm_err_o,
-    output 		       wbm_rty_o, 
+    output 		       wbm_rty_o,
     // Wishbone Slave interface
     output [num_slaves*aw-1:0] wbs_adr_o,
     output [num_slaves*dw-1:0] wbs_dat_o,
-    output [num_slaves*4-1:0]  wbs_sel_o, 
+    output [num_slaves*4-1:0]  wbs_sel_o,
     output [num_slaves-1:0]    wbs_we_o,
     output [num_slaves-1:0]    wbs_cyc_o,
     output [num_slaves-1:0]    wbs_stb_o,
@@ -106,7 +106,19 @@ module wb_mux
       end
    endgenerate
 
-   assign slave_sel = ff1(match, num_slaves);
+   function [$clog2(num_slaves)-1:0] ff1_yosys;
+       input [num_slaves-1:0] in;
+       integer i;
+       begin
+           ff1_yosys = 0;
+           for (i = num_slaves-1; i >= 0; i=i-1) begin
+               if (in[i])
+                   ff1_yosys = i;
+           end
+       end
+   endfunction
+
+   assign slave_sel = ff1_yosys(match);
 
    always @(posedge wb_clk_i)
      wbm_err <= wbm_cyc_i & !(|match);
@@ -118,7 +130,7 @@ module wb_mux
 
    assign wbs_cyc_o = match & (wbm_cyc_i << slave_sel);
    assign wbs_stb_o = {num_slaves{wbm_stb_i}};
-   
+
    assign wbs_cti_o = {num_slaves{wbm_cti_i}};
    assign wbs_bte_o = {num_slaves{wbm_bte_i}};
 
