@@ -573,7 +573,9 @@ assign	wb_s2m_sdram_dbus_err = 0;
 assign	wb_s2m_sdram_dbus_rty = 0;
 
 wb_sdram_ctrl #(
+`ifndef SIM
 	.TECHNOLOGY         ("ECP5"),
+`endif
 	.CLK_FREQ_MHZ			(25),	// sdram_clk freq in MHZ
 	.POWERUP_DELAY			(200),	// power up delay in us
 	.REFRESH_MS			(32),	// delay between refresh cycles im ms

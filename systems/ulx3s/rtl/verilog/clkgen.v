@@ -70,7 +70,7 @@ assign sdram_clk_shift[0] = sys_clk_pad_i;
 generate
 	genvar ii;
 	for (ii = 0; ii < sdram_shift_count; ii=ii+1) begin
-		LUT4 #(.INIT(2)) lut4_i (.A(sdram_clk_shift[ii]), .B(), .C(), .D(), .Z(sdram_clk_shift[ii+1]));
+		LUT4 #(.INIT(2)) lut4_i (.A(sdram_clk_shift[ii]), .B(1'b0), .C(1'b0), .D(1'b0), .Z(sdram_clk_shift[ii+1]));
 	end
 endgenerate
 

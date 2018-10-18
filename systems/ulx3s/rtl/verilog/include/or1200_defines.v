@@ -43,8 +43,8 @@
 //
 // $Log: or1200_defines.v,v $
 // Revision 2.0  2010/06/30 11:00:00  ORSoC
-// Minor update: 
-// Defines added, bugs fixed. 
+// Minor update:
+// Defines added, bugs fixed.
 
 //
 // Dump VCD
@@ -119,14 +119,14 @@
 //
 // Target FPGA memories
 //
-`define OR1200_ALTERA_LPM
+//`define OR1200_ALTERA_LPM
 //`define OR1200_XILINX_RAMB16
 //`define OR1200_XILINX_RAMB4
 //`define OR1200_XILINX_RAM32X1D
 //`define OR1200_USE_RAM16X1D_FOR_RAM32X1D
-// Generic models should infer RAM blocks at synthesis time (not only effects 
+// Generic models should infer RAM blocks at synthesis time (not only effects
 // single port ram.)
-//`define OR1200_GENERIC
+`define OR1200_GENERIC
 
 //
 // Do not implement Data cache
@@ -450,7 +450,7 @@
 //
 // Generic (flip-flop based) register file (see or1200_rfram_generic.v)
 //`define OR1200_RFRAM_GENERIC
-//  Generic register file supports - 16 registers 
+//  Generic register file supports - 16 registers
 `ifdef OR1200_RFRAM_GENERIC
 //    `define OR1200_RFRAM_16REG
 `endif
@@ -634,8 +634,8 @@
 `define OR1200_FPUOP_WIDTH	8
 // FPU unit from Usselman takes 5 cycles from decode, so 4 ex. cycles
 `define OR1200_FPUOP_CYCLES 3'd4
-// FP instruction is double precision if bit 4 is set. We're a 32-bit 
-// implementation thus do not support double precision FP 
+// FP instruction is double precision if bit 4 is set. We're a 32-bit
+// implementation thus do not support double precision FP
 `define OR1200_FPUOP_DOUBLE_BIT 4
 `define OR1200_FPUOP_ADD  8'b0000_0000
 `define OR1200_FPUOP_SUB  8'b0000_0001
@@ -934,8 +934,8 @@
 //`define OR1200_DU_HWBKPTS
 
 // Number of DVR/DCR pairs if HW breakpoints enabled
-//	Comment / uncomment DU_DVRn / DU_DCRn pairs bellow according to this number ! 
-//	DU_DVR0..DU_DVR7 should be uncommented for 8 DU_DVRDCR_PAIRS 
+//	Comment / uncomment DU_DVRn / DU_DCRn pairs bellow according to this number !
+//	DU_DVR0..DU_DVR7 should be uncommented for 8 DU_DVRDCR_PAIRS
 `define OR1200_DU_DVRDCR_PAIRS 8
 
 // Define if you want trace buffer
@@ -1130,8 +1130,8 @@
 //
 // According to architecture manual there is no shift, so default value is 0.
 // However the implementation has deviated in this from the arch manual and had
-// hard coded shift by 28 bits which is a useful optimization for MP3 decoding 
-// (if using libmad fixed point library). Shifts are no longer default setup, 
+// hard coded shift by 28 bits which is a useful optimization for MP3 decoding
+// (if using libmad fixed point library). Shifts are no longer default setup,
 // but if you need to remain backward compatible, define your shift bits, which
 // were normally
 // dest_GPR = {MACHI,MACLO}[59:28]
@@ -1494,16 +1494,16 @@
 // VR, UPR and Configuration Registers
 //
 //
-// VR, UPR and configuration registers are optional. If 
+// VR, UPR and configuration registers are optional. If
 // implemented, operating system can automatically figure
-// out how to use the processor because it knows 
+// out how to use the processor because it knows
 // what units are available in the processor and how they
 // are configured.
 //
 // This section must be last in or1200_defines.v file so
 // that all units are already configured and thus
 // configuration registers are properly set.
-// 
+//
 
 // Define if you want configuration registers implemented
 `define OR1200_CFGR_IMPLEMENTED
