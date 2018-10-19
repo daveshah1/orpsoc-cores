@@ -63,6 +63,7 @@ assign	async_rst  = ~async_rst_n;
 assign	async_rst_o = ~async_rst_n;
 
 // No PLL support - phase shift SDRAM clk using LUTs :vomit:
+/*
 localparam sdram_shift_count  = 5;
 wire [sdram_shift_count:0] sdram_clk_shift;
 assign sdram_clk_shift[0] = sys_clk_pad_i;
@@ -75,6 +76,8 @@ generate
 endgenerate
 
 assign sdram_clk_o = sdram_clk_shift[sdram_shift_count];
+*/
+assign sdram_clk_o = sys_clk_pad_i;
 
 //
 // Declare synchronous reset wires here

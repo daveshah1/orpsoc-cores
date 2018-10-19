@@ -4,7 +4,7 @@ description = "Minimal mor1kx simulation environment"
 depend =
  adv_debug_sys
  >=jtag_tap-1.13
- mor1kx
+ mor1kx-3.1
  >=uart16550-1.5.4
  >=wb_intercon-1.0
  >=wb_ram-1.0

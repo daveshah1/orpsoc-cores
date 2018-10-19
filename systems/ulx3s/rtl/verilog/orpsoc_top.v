@@ -299,7 +299,8 @@ mor1kx #(
 	.OPTION_DCACHE_WAYS(2),
 	.OPTION_DCACHE_LIMIT_WIDTH(31),
 	.FEATURE_DMMU("ENABLED"),
-	.OPTION_PIC_TRIGGER("LATCHED_LEVEL"),
+	.OPTION_RF_NUM_SHADOW_GPR	(1),
+	//.OPTION_PIC_TRIGGER("LATCHED_LEVEL"),
 
 	.IBUS_WB_TYPE("B3_REGISTERED_FEEDBACK"),
 	.DBUS_WB_TYPE("B3_REGISTERED_FEEDBACK"),
@@ -337,38 +338,7 @@ mor1kx #(
 	.dwbm_dat_i(wb_s2m_or1k_d_dat),
 	.dwbm_rty_i(wb_s2m_or1k_d_rty),
 
-	.avm_d_address_o (),
-	.avm_d_byteenable_o (),
-	.avm_d_read_o (),
-	.avm_d_readdata_i (32'h00000000),
-	.avm_d_burstcount_o (),
-	.avm_d_write_o (),
-	.avm_d_writedata_o (),
-	.avm_d_waitrequest_i (1'b0),
-	.avm_d_readdatavalid_i (1'b0),
-
-	.avm_i_address_o (),
-	.avm_i_byteenable_o (),
-	.avm_i_read_o (),
-	.avm_i_readdata_i (32'h00000000),
-	.avm_i_burstcount_o (),
-	.avm_i_waitrequest_i (1'b0),
-	.avm_i_readdatavalid_i (1'b0),
-
 	.irq_i(or1k_irq),
-
-	.traceport_exec_valid_o  (),
-	.traceport_exec_pc_o     (),
-	.traceport_exec_insn_o   (),
-	.traceport_exec_wbdata_o (),
-	.traceport_exec_wbreg_o  (),
-	.traceport_exec_wben_o   (),
-
-	.multicore_coreid_i   (32'd0),
-	.multicore_numcores_i (32'd0),
-
-	.snoop_adr_i (32'd0),
-	.snoop_en_i  (1'b0),
 
 	.du_addr_i(or1k_dbg_adr_i[15:0]),
 	.du_stb_i(or1k_dbg_stb_i),
